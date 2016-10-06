@@ -105,22 +105,35 @@ background:#888888;
     <tr>
     	<td align="center">
 			    <br>
-	  <form class="form-horizontal">
+	  <div id="main" ng-app="DangKiApp" ng-controller="RegisterCtrl">
+		  <form class="form-horizontal" name="form" ng-submit="register()" novalidate>
 	    <div class="form-group">
-	      <label class="control-label col-sm-2" for="name">Tài Khoản:</label>
-	      <div class="col-sm-10">
-	        <input type="name" class="form-control" id="name" placeholder="Nhập tài khoản">
-	      </div>
-	    </div>
-	    <div class="form-group">
-	      <label class="control-label col-sm-2" for="pwd">Mật khẩu:</label>
-	      <div class="col-sm-10">
-	        <input type="password" class="form-control" id="pwd" placeholder="Nhập mật khẩu">
-	      </div>
+	      <label class="control-label required col-sm-2" for="username">Tài Khoản:</label>
+                  <div class="col-sm-10">
+                    <input name="username" type="text" class="form-control"
+                                       placeholder="Tên đăng nhập"  ng-model="username"  ng-minlength="6"
+                                       ng-maxlength="20" ng-pattern="/^[a-zA-Z]+$/" required>
+                                       <i class="fa fa-check text-success" ng-show="form.username.$dirty && form.username.$valid">
+                                        </i>
+                                         
+                                        <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
+                                         
+                                        <div ng-show="form.username.$dirty && form.username.$invalid" class="text-danger">
+                                        <i class="fa fa-times text-danger"></i>
+                                         
+                                        <!--Nếu dữ liệu không hợp lệ-->
+                                        <span ng-show="form.username.$error.required">Bạn chưa nhập Username</span>
+                                         
+                                        <!--Custom thông báo điện thoại không được rỗng-->
+                                        <span ng-show="form.username.$error.minlength">Username dài hơn 6 kí tự</span>
+                                        <span ng-show="form.username.$error.maxlength">Username ngắn hơn 20 kí tự</span>
+                                        <span ng-show="form.username.$error.pattern">Username không đúng định dạng kí tự</span>
+                                    </div>
+                  </div>
 	    </div>
 	    <div class="form-group">
 	      <div class="col-sm-offset-2 col-sm-10">
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Đăng nhập</button>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)">Đăng nhập</button>
                       <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -144,6 +157,7 @@ background:#888888;
 	      </div>
 	    </div>
   </form>
+		</div>
       </td>
     </tr>
     </tbody>
@@ -178,5 +192,14 @@ background:#888888;
   }
 </script>
 </footer>
+	<script type="text/javascript">
+  var DangKiApp = angular.module('DangKiApp',[])
+ .controller( "RegisterCtrl", ['$scope', function($scope) {
+ $scope.success = false;
+ $scope.register = function() {
+ $scope.success=true;
+ }
+ }]);
+</script>
 </body>
 </html>
