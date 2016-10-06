@@ -180,12 +180,20 @@ background:#888888;
         <tr>
           <td>
             <form class="form-horizontal">
-            <div class="col-sm-6"><h2>Tên tác giả</h2></div><div class="col-sm-6"><h2>Cơ quan công tác</h2></div>
-            <table class="table table-bordered" id="myTable">
-              <!--tr><td></td><td></td></tr-->
+            <table id='dataTable' class="table-bordered" >
+            <tbody>
+                <tr><th align='center'><b>Tên tác giả </b></th>
+                    <th align='center' colspan='2'><b>Cơ quan công tác</b></th>
+                    <th></th>
+                </tr>    
+                <tr><td><input class="form-control" id='input0' type="text"/></td>              
+                    <td ><input class="form-control" id='input1' type='text'/></td>
+                    <td>
+                    <button class="btn btn-default" type='button' id='input2' onclick="addRow('dataTable')">+</button>
+                    </td>
+                </tr>
+            </tbody> 
             </table>
-          <button onclick="myCreateFunction()" type="button" class="btn btn-default">Create row</button>
-          <button onclick="myDeleteFunction()" type="button" class="btn btn-default">Delete row</button>
           </form>
             <label><font color="orange"><h4>Thông tin người đại diện</h4></font></label>
             <form class="form-horizontal">
@@ -294,17 +302,35 @@ dragdropWidth:500
 });
 </script>
 <script>
-function myCreateFunction() {
-    var table = document.getElementById("myTable");
-    var row = table.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    cell1.innerHTML = "NEW CELL1";
-    cell2.innerHTML = "NEW CELL2";
-}
+function addRow(tableID) {
+    var table = document.getElementById(tableID);
+    var rowCount = table.rows.length;
+    var colCount = table.rows[0].cells.length;    
+    var validate_Noof_columns = (colCount - 1); // •No Of Columns to be Validated on Text.
+    for(var j = 0; j < colCount; j++) { 
+        var text = window.document.getElementById('input'+j).value;
 
-function myDeleteFunction() {
-    document.getElementById("myTable").deleteRow(0);
+        if (j == validate_Noof_columns) {
+            row = table.insertRow(2); // •location of new row.
+            for(var i = 0; i < colCount; i++) {       
+            var text = window.document.getElementById('input'+i).value;
+            var newcell = row.insertCell(i);
+                if(i == (colCount - 1)) {  // Replace last column with delete button
+    newcell.innerHTML = "<button class='btn btn-default' type='button' onclick='removeRow(this)'>x</button>"; break;
+                } else  {
+                    newcell.innerHTML = text;
+                    window.document.getElementById('input'+i).value = '';
+                }
+            }   
+        }else if (text != 'undefined' && text.trim() == ''){ 
+            alert('Chưa nhập liệu');break;
+        }  
+    }   
+}
+function removeRow(onclickTAG) {
+    // Iterate till we find TR tag. 
+    while ( (onclickTAG = onclickTAG.parentElement)  && onclickTAG.tagName != 'TR' );
+            onclickTAG.parentElement.removeChild(onclickTAG);      
 }
 </script>
 <footer class="container-fluid text-center">
