@@ -13,6 +13,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <style>
 #main{margin-left:20px; margin-right:20px;}
 </style>
@@ -82,13 +83,13 @@
                     <div class="form-group">
                     <div ng-show="success" class="text-success text-center">Đăng ký thành viên thành công !</div>
                     </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                           <label class="control-label required col-sm-3" for="username">Tên Tài Khoản:</label>
                           <div class="col-sm-8">
                             <input name="username" type="text" class="form-control"
                              placeholder="Tên đăng nhập"  ng-model="username"  ng-minlength="6"
                              ng-maxlength="20" ng-pattern="/^[a-zA-Z]+$/" required>
-                             <i class="fa fa-check text-success" ng-show="form.username.$dirty && form.username.$valid">
+                             <i class="form-control-feedback glyphicon glyphicon-password glyphicon-ok" ng-show="form.username.$dirty && form.username.$valid">
                               </i>
                                
                               <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
@@ -106,12 +107,12 @@
                           </div>
                         </div>
                         </div>
-              <div class="form-group">
+              <div class="form-group has-feedback">
                 <label class="control-label required col-sm-3" for="password">Mật khẩu:</label>
               <div class="col-sm-8">
                 <input name="password" ng-model="password" type="password" class="form-control"
                   placeholder="Mật khẩu" ng-minlength="6" ng-maxlength="30" required>
-                  <i class="fa fa-check text-success" ng-show="form.password.$dirty && form.password.$valid">
+                  <i class="form-control-feedback glyphicon glyphicon-password glyphicon-ok" ng-show="form.password.$dirty && form.password.$valid">
                   </i>
                    
                   <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
@@ -128,7 +129,7 @@
               </div>
             </div>
               </div>
-            <div class="form-group" ng-app="DangKi1">
+            <div class="form-group has-feedback" ng-app="DangKi1">
               <label class="control-label required col-sm-3" for="repassword">Nhập lại mật khẩu:</label>
               <div class="col-sm-8">
                 <input class="form-control" type="password" name="repassword" id="repassword"
@@ -138,13 +139,13 @@
                 </span>
             </div>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
               <label class="control-label required col-sm-3" for="fullname">Họ và tên:</label>
               <div class="col-sm-8">
                 <input name="fullname" type="text" class="form-control"
                  placeholder="Họ và tên"  ng-model="fullname"  ng-minlength="6"
                  ng-maxlength="50" ng-pattern="/^[a-zA-Z]+$/" required>
-                 <i class="fa fa-check text-success" ng-show="form.fullname.$dirty && form.fullname.$valid">
+                 <i class="form-control-feedback glyphicon glyphicon-password glyphicon-ok" ng-show="form.fullname.$dirty && form.fullname.$valid">
                   </i>
                    
                   <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
@@ -176,13 +177,13 @@
                 <label class="radio-inline"><input type="radio" value="female" name="optradio">Nữ</label>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
               <label class="control-label required col-sm-3" for="CMND">CMND:</label>
               <div class="col-sm-8">
                 <input name="CMND" type="text" class="form-control"
                  placeholder="CMND"  ng-model="CMND"  ng-minlength="9"
                  ng-maxlength="50" ng-pattern="/^[0-9-+]+$/" required>
-                 <i class="fa fa-check text-success" ng-show="form.CMND.$dirty && form.CMND.$valid">
+                 <i class="form-control-feedback glyphicon glyphicon-password glyphicon-ok" ng-show="form.CMND.$dirty && form.CMND.$valid">
                   </i>
                    
                   <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
@@ -198,13 +199,13 @@
               </div>
             </div>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
               <label class="control-label required col-sm-3" for="noicap">Nơi cấp:</label>
               <div class="col-sm-8">
                 <input name="noicap" type="text" class="form-control"
                  placeholder="Nơi cấp"  ng-model="noicap"  ng-minlength="0"
                  ng-maxlength="50" required>
-                 <i class="fa fa-check text-success" ng-show="form.noicap.$dirty && form.noicap.$valid">
+                 <i class="form-control-feedback glyphicon glyphicon-password glyphicon-ok" ng-show="form.noicap.$dirty && form.noicap.$valid">
                   </i>
                    
                   <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
@@ -224,13 +225,13 @@
               <input name="ngaycap" type="date" ng-model="ngaycap" class="form-control">
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
               <label class="control-label required col-sm-3" for="diachi">Địa chỉ:</label>
               <div class="col-sm-8">
                 <input name="diachi" type="text" class="form-control"
                  placeholder="Địa chỉ"  ng-model="diachi"  ng-minlength="0"
                  ng-maxlength="50" required>
-                 <i class="fa fa-check text-success" ng-show="form.diachi.$dirty && form.diachi.$valid">
+                 <i class="form-control-feedback glyphicon glyphicon-password glyphicon-ok" ng-show="form.diachi.$dirty && form.diachi.$valid">
                   </i>
                    
                   <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
@@ -243,13 +244,13 @@
               </div>
             </div>
             </div>
-             <div class="form-group">
+             <div class="form-group has-feedback">
                <label class="control-label required col-sm-3" for="phone">Điện thoại:</label>
               <div class="col-sm-8">
                 <input name="phone" type="text" class="form-control"
                  placeholder="Số điện thoại"  ng-model="phone"  ng-minlength="9"
                  ng-maxlength="15" ng-pattern="/^[0-9-+]+$/" required>
-                 <i class="fa fa-check text-success" ng-show="form.phone.$dirty && form.phone.$valid">
+                 <i class="form-control-feedback glyphicon glyphicon-password glyphicon-ok" ng-show="form.phone.$dirty && form.phone.$valid">
                   </i>
                    
                   <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
@@ -267,12 +268,12 @@
               </div>
             </div>
              </div>
-            <div class="form-group">
+            <div class="form-group has-feedback">
               <label class="control-label required col-sm-3" for="email">Email:</label>
               <div class="col-sm-8">
                 <input name="email" type="email" class="form-control" placeholder="Email"
                   ng-model="email" autocomplete="off">
-                  <i class="fa fa-check text-success" ng-show="form.email.$dirty && form.email.$valid">
+                  <i class="form-control-feedback glyphicon glyphicon-password glyphicon-ok" ng-show="form.email.$dirty && form.email.$valid">
                   </i>
                    
                   <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
