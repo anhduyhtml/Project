@@ -12,13 +12,32 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  
-
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-<script src="js/DangKiApp.js"></script>
   <style>
+  .searchform {
+float: left;
+margin-top: 20px;
+border:#888888 2px solid;
+height:27px;
+width:350px;
+}
+.searchform input[type=text]
+{
+width:270px;
+height:21px;
+border:0px;
+background:"LightGray";
+float:left;
+margin:0px;padding:3px;
+}
+.searchform input[type=submit]
+{
+border:#888888 2px solid;
+float:right;
+margin:2px 2px 2px 2px;
+height:23px;
+padding-top:1px;
+background:#888888;
+}
   	.banner{
   		padding-top: 0px;
       padding-bottom: 0px;
@@ -63,8 +82,12 @@
         <li><a href="DangKi.html#"><span class="glyphicon glyphicon-user"></span> Đăng Kí</a></li>
         <li><a href="DangNhap.html#"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a></li>
         <li><form class="navbar-form navbar-side">
-            <input type="text" class="form-control" placeholder="Tìm Kiếm">
-            <button type="button" class="btn button-tim">Tim</button>
+            <div id="search">
+<form class="searchform" action="" method="get">
+<input class="s" onfocus="if (this.value == 'Search this website …') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this website …';}" type="text" name="s" value="Search this website …" />
+<input class="searchsubmit" type="submit" value="Search" />
+</form>
+</div>
           </form> </li>
       </ul>
     </div>
@@ -75,22 +98,22 @@
 	<div class="col-sm-4">
 	<img width="400" src="login.jpg">
 </div>
-<div class="col-sm-6" >
+<div class="col-sm-6">
   <h2><font color="red">ĐĂNG NHẬP TÀI KHOẢN</font></h2>
   <table class="table table-bordered">
     <tbody>
     <tr>
     	<td align="center">
 			    <br>
-	           <div id="main" ng-app="DangKiApp" ng-controller="RegisterCtrl">
-              <form class="form-horizontal" name="form" ng-submit="register()" novalidate>
-                <div class="form-group has-feedback">
-                  <label class="control-label required col-sm-2" for="username">Tài Khoản:</label>
+	  <div id="main" ng-app="DangKiApp" ng-controller="RegisterCtrl">
+		  <form class="form-horizontal" name="form" ng-submit="register()" novalidate>
+	    <div class="form-group">
+	      <label class="control-label required col-sm-2" for="username">Tài Khoản:</label>
                   <div class="col-sm-10">
                     <input name="username" type="text" class="form-control"
                                        placeholder="Tên đăng nhập"  ng-model="username"  ng-minlength="6"
                                        ng-maxlength="20" ng-pattern="/^[a-zA-Z]+$/" required>
-                                       <i class="form-control-feedback fa fa-check text-success" ng-show="form.username.$dirty && form.username.$valid">
+                                       <i class="fa fa-check text-success" ng-show="form.username.$dirty && form.username.$valid">
                                         </i>
                                          
                                         <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
@@ -107,54 +130,34 @@
                                         <span ng-show="form.username.$error.pattern">Username không đúng định dạng kí tự</span>
                                     </div>
                   </div>
-                </div>
-                <div class="form-group has-feedback">
-                  <label class="control-label required col-sm-2" for="password">Mật khẩu:</label>
-                  <div class="col-sm-10">
-                    <input name="password" ng-model="password" type="password" class="form-control"
-                            placeholder="Mật khẩu" ng-minlength="6" ng-maxlength="30" required>
-                            <i class="form-control-feedback fa fa-check text-success" ng-show="form.password.$dirty && form.password.$valid">
-                            </i>
-                             
-                            <!--Dấu check thể hiện việc nhập dữ liệu được nhập là hợp lệ-->
-                             
-                            <div ng-show="form.password.$dirty && form.password.$invalid" class="text-danger">
-                            <i class="fa fa-times text-danger"></i>
-                             
-                            <!--Nếu dữ liệu không hợp lệ-->
-                            <span ng-show="form.password.$error.required">Bạn chưa nhập Mật khẩu</span>
-                             
-                            <!--Custom thông báo điện thoại không được rỗng-->
-                            <span ng-show="form.password.$error.minlength">Mật khẩu dài hơn 6 kí tự</span>
-                            <span ng-show="form.password.$error.maxlength">Mật khẩu ngắn hơn 30 kí tự</span>
-                        </div>
-                  </div>
-                </div>
-                    <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)">Đăng nhập</button>
-                                    <div class="modal fade" id="myModal" role="dialog">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-head"><label><font color="Blue" size="3">Chọn Người Dùng</font></label></div>
-                                          <div class="modal-body">
-                                            <form>
-                                <label class="radio-inline"><input type="radio" name="optradio" onclick="if (checked) {FunctionAdmin()}">Admin</label>
+	    </div>
+	    <div class="form-group">
+	      <div class="col-sm-offset-2 col-sm-10">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)">Đăng nhập</button>
+                      <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                          <div class="modal-head"><label><font color="Blue" size="3">Chọn Người Dùng</font></label></div>
+                            <div class="modal-body">
+                              <form>
+                                <label class="radio-inline">
+                                  <input type="radio" name="optradio" >Admin
+                                </label>
                                 <label class="radio-inline"><input type="radio" name="optradio" onclick="if (checked) {FunctionTBT()}">Tổng Biên Tập</label>
                                 <label class="radio-inline"><input type="radio" name="optradio" onclick="if (checked) {
                                   FunctionBTV()}">BTV</label>
                                 <label class="radio-inline"><input type="radio" name="optradio" onclick="if (checked) {FunctionPhanBien()}">Phản Biện</label>
                                 <label class="radio-inline"><input type="radio" name="optradio" onclick="if (checked) {FunctionTacGia()}">Tác Giả</label>
                                 <label class="radio-inline"><input type="radio" name="optradio" onclick="if (checked) {FunctionDocGia()}">Đọc Giả</label>
-                                            </form><br>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
+                              </form><br>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                </form> 
-             </div>
+	      </div>
+	    </div>
+  </form>
+		</div>
       </td>
     </tr>
     </tbody>
@@ -171,6 +174,14 @@
   {
     window.location="TacGia_2.html";
   }
+   function FunctionTBT()
+  {
+    window.location="TổngBiênTập.html";
+  }
+   function FunctionBTV()
+  {
+    window.location="BiênTậpViên.html";
+  }
   function FunctionDocGia()
   {
     window.location="DocGia.html";
@@ -179,20 +190,16 @@
   {
     window.location="phanbien_home.html"
   }
- function FunctionAdmin()
-  {
-    window.location="Admin.html"
-  }  
-  function FunctionTBT()
-  {
-    window.location="TổngBiênTập.html"
-  }  
-   function FunctionBTV()
-  {
-    window.location="BiênTậpViên.html"
-  }  
-
 </script>
 </footer>
+	<script type="text/javascript">
+  var DangKiApp = angular.module('DangKiApp',[])
+ .controller( "RegisterCtrl", ['$scope', function($scope) {
+ $scope.success = false;
+ $scope.register = function() {
+ $scope.success=true;
+ }
+ }]);
+</script>
 </body>
 </html>
